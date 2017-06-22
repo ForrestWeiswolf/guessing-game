@@ -2,10 +2,11 @@
 <html lang="en">
   <head>
     <title>Guessing Game</title>
+    <link rel="stylesheet" href="styles/bootstrap.css">
     <link href="styles/style.css" rel="stylesheet" type="text/css">
   </head>
   <body>
-      <div id='app' class="center">
+      <div id='app' class="center" class="container">
 
         <div id='headers'>
           <h1>Play the Guessing Game!</h1>
@@ -15,8 +16,8 @@
         <div id='main'>
           <div id='input-parent'>
             <form>
-              <input id="guess_input" type="text" name="number" placeholder="#" maxlength="3" autofocus>
-              <input id="submit_guess" type="submit" value="Guess!">
+              <input id="guess_input" class="form-control" type="text" name="number" placeholder="#" maxlength="3" autofocus>
+              <input id="submit_guess" class="btn btn-primary btn-block" type="submit" value="Guess!">
             </form>
           </div>
 
@@ -31,21 +32,22 @@
           </div>
 
           <div id="menu-btns">
-            <button type="button">Reset</button>
-            <button type="button">Hint</button>
+            <button type="button" class="btn btn-warning btn-sm">Reset</button>
+            <button type="button" class="btn btn-info btn-sm">Hint</button>
           </div>
         </div>
       </div>
 
-    <div id='footer'>
-          <img src='images/fa-logo@2x.png'></img>
+    <div id='footer' class="center">
+      <div class="row"></div>
+        <img src='images/fa-logo@2x.png' class="col-md-4"></img>
 
-          <div class='center' id="signature">
-            <h4>Project by Forrest Wolf</h4>
-          </div>
+        <div class="col-md-4">
+          <h4>Project by Forrest Wolf</h4>
+        </div>
 
-          <img src='images/grace_hopper_academy.png'></img>
-
+        <img src='images/grace_hopper_academy.png' class="col-md-4"></img>
+      </div>
     </div>
 
   </body>
