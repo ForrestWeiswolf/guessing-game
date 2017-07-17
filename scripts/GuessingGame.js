@@ -71,3 +71,23 @@ Game.prototype.checkGuess = function() {
 Game.prototype.provideHint = function() {
 	return shuffle([generateWinningNumber(), generateWinningNumber(), this.winningNumber]);
 }
+
+$(document).ready(function() {
+	game = new Game();
+    $('#submit_guess').click(function(event) {
+    	event.preventDefault();
+    	enterGuess();
+    })
+    $('#submit_guess').keypress(function(event) {
+    	if(event.keyCode == 13){
+	    	event.preventDefault();
+    		enterGuess();
+    	}
+    })
+
+    function enterGuess() {
+		var guess = $('guess_input').val();
+    	console.log(game.playersGuessSubmission(parseInt(guess, 10)));
+   		$('#guess_input').val('');
+	}
+})
