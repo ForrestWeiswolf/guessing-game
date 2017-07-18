@@ -88,7 +88,10 @@ $(document).ready(function() {
 
     function enterGuess() {
 		var guess = $('#guess_input').val();
-     	console.log(game.playersGuessSubmission(parseInt(guess, 10)));
+    	var checkResult = game.playersGuessSubmission(parseInt(guess, 10));
    		$('#guess_input').val('');
+   		if (checkResult === 'You have already guessed that number.'){
+	   		$('#subtitle').text(checkResult);
+	   	}
 	}
 })
