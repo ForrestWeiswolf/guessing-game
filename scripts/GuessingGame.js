@@ -86,6 +86,17 @@ $(document).ready(function() {
 		}
 	})
 
+	$('#reset').click(function(event) {
+		game = new Game;
+		$('#guesses ul li').each(function(index){
+			$(this).text("_");
+		});
+		$('#title').text('Play the Guessing Game!');
+		$('#subtitle').text("Guess a number between 1 and 100.");
+		$('#submit_guess').prop('disabled', false);
+		$('#hint').prop('disabled', false);
+	})
+
 	function enterGuess() {
 		var guess = $('#guess_input').val();
 		var checkResult = game.playersGuessSubmission(parseInt(guess, 10));
@@ -95,7 +106,7 @@ $(document).ready(function() {
 			$('#subtitle').text(checkResult);
 		} else if(checkResult === "You Win!" || checkResult === "You Lose."){
 			$('#title').text(checkResult);
-			$('#subtitle').text("Click 'Reset' (or reload page) to play again.")
+			$('#subtitle').text("Click 'Reset' (or reload page) to play again.");
 			$('#submit_guess').prop('disabled', true);
 			$('#hint').prop('disabled', true);
 		} else {
