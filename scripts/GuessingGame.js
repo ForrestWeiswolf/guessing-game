@@ -90,8 +90,13 @@ $(document).ready(function() {
 		var guess = $('#guess_input').val();
     	var checkResult = game.playersGuessSubmission(parseInt(guess, 10));
    		$('#guess_input').val('');
+
    		if (checkResult === 'You have already guessed that number.'){
 	   		$('#subtitle').text(checkResult);
+		} else {
+			$('#guesses ul li').each(function(index){
+				$(this).text(game.pastGuesses[index]);
+			});
 	   	}
 	}
 })
