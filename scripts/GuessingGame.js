@@ -75,28 +75,28 @@ Game.prototype.provideHint = function() {
 
 $(document).ready(function() {
 	game = new Game();
-    $('#submit_guess').click(function(event) {
-    	event.preventDefault();
-    	enterGuess();
-    })
-    $('#submit_guess').keypress(function(event) {
-    	if(event.keyCode == 13){
-	    	event.preventDefault();
-    		enterGuess();
-    	}
-    })
+	$('#submit_guess').click(function(event) {
+		event.preventDefault();
+		enterGuess();
+	})
+	$('#submit_guess').keypress(function(event) {
+		if(event.keyCode == 13){
+			event.preventDefault();
+			enterGuess();
+		}
+	})
 
-    function enterGuess() {
+	function enterGuess() {
 		var guess = $('#guess_input').val();
-    	var checkResult = game.playersGuessSubmission(parseInt(guess, 10));
-   		$('#guess_input').val('');
+		var checkResult = game.playersGuessSubmission(parseInt(guess, 10));
+		$('#guess_input').val('');
 
-   		if (checkResult === 'You have already guessed that number.'){
-	   		$('#subtitle').text(checkResult);
+		if (checkResult === 'You have already guessed that number.'){
+			$('#subtitle').text(checkResult);
 		} else {
 			$('#guesses ul li').each(function(index){
 				$(this).text(game.pastGuesses[index]);
 			});
-	   	}
+		}
 	}
 })
