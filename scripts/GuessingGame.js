@@ -93,10 +93,13 @@ $(document).ready(function() {
 
 		if (checkResult === 'You have already guessed that number.'){
 			$('#subtitle').text(checkResult);
-		} else {
-			$('#guesses ul li').each(function(index){
-				$(this).text(game.pastGuesses[index]);
-			});
+		} else if(checkResult === "You Win!" || checkResult === "You Lose."){
+			$('#title').text(checkResult);
+			$('#subtitle').text("Click 'Reset' (or reload page) to play again.")
 		}
+
+		$('#guesses ul li').each(function(index){
+			$(this).text(game.pastGuesses[index]);
+		});
 	}
 })
