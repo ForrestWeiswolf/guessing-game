@@ -117,7 +117,7 @@ $(document).ready(function() {
 			$('#submit_guess').prop('disabled', true);
 			$('#hint').prop('disabled', true);
 		} else {
-			var direction = game.isLower ? "Too low: " : "Too high: ";
+			var direction = game.isLower() ? "Too low: " : "Too high: ";
 			$('#subtitle').text(direction + checkResult);
 		}
 
