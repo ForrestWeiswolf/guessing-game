@@ -91,13 +91,16 @@ $(document).ready(function() {
 		var checkResult = game.playersGuessSubmission(parseInt(guess, 10));
 		$('#guess_input').val('');
 
-		if(checkResult === "You Win!" || checkResult === "You Lose."){
+		if (checkResult === 'You have already guessed that number.'){
+			$('#subtitle').text(checkResult);
+		} else if(checkResult === "You Win!" || checkResult === "You Lose."){
 			$('#title').text(checkResult);
 			$('#subtitle').text("Click 'Reset' (or reload page) to play again.")
 			$('#submit_guess').prop('disabled', true);
 			$('#hint').prop('disabled', true);
 		} else {
-			$('#subtitle').text(checkResult);
+			var direction = game.isLower ? "Too low: " : "Too high: ";
+			$('#subtitle').text(direction + checkResult);
 		}
 
 		$('#guesses ul li').each(function(index){
