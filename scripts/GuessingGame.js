@@ -50,7 +50,7 @@ Game.prototype.playersGuessSubmission = function(guess) {
 };
 
 Game.prototype.checkGuess = function() {
-	if(typeof this.playersGuess != 'number' || this.playersGuess < 1 || this.playersGuess > 100){
+	if(isNaN(this.playersGuess) || this.playersGuess < 1 || this.playersGuess > 100){
 		throw "That is an invalid guess.";
 	} else if (this.pastGuesses.indexOf(this.playersGuess) != -1){
 		return "You have already guessed that number."
