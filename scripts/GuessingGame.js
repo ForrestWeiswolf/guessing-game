@@ -97,6 +97,11 @@ $(document).ready(function() {
 		$('#hint').prop('disabled', false);
 	})
 
+	$('#hint').click(function(event) {
+		var hintStr = game.provideHint().join(", ");
+		$('#subtitle').text(`Hint: It's one one of these numbers: ${hintStr}`);
+	})
+
 	function enterGuess() {
 		var guess = $('#guess_input').val();
 		var checkResult = game.playersGuessSubmission(parseInt(guess, 10));
