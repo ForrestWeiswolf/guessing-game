@@ -96,6 +96,8 @@ $(document).ready(function() {
 		} else if(checkResult === "You Win!" || checkResult === "You Lose."){
 			$('#title').text(checkResult);
 			$('#subtitle').text("Click 'Reset' (or reload page) to play again.")
+			$('#submit_guess').prop('disabled', true);
+			$('#hint').prop('disabled', true);
 		}
 
 		$('#guesses ul li').each(function(index){
