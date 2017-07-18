@@ -87,8 +87,8 @@ $(document).ready(function() {
     })
 
     function enterGuess() {
-		var guess = $('guess_input').val();
-    	console.log(game.playersGuessSubmission(parseInt(guess, 10)));
+		var guess = $('#guess_input').val();
+     	console.log(game.playersGuessSubmission(parseInt(guess, 10)));
    		$('#guess_input').val('');
 	}
 })
