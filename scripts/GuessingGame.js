@@ -38,8 +38,9 @@ Game.prototype.isLower = function() {
 Game.prototype.playersGuessSubmission = function(guess) {
 	var result;
 	this.playersGuess = guess;
-	if(this.checkGuess() == "You have already guessed that number.") {
-		result = "You have already guessed that number.";
+	if(this.checkGuess() === "You have already guessed that number." || 
+			this.checkGuess() === 'That is an invalid guess.') {
+		result = this.checkGuess();
 	} else {
 		//must check before guess is added to pastGuesses to avoid 
 		//false positives on "You have already guessed that number"
@@ -51,7 +52,7 @@ Game.prototype.playersGuessSubmission = function(guess) {
 
 Game.prototype.checkGuess = function() {
 	if(isNaN(this.playersGuess) || this.playersGuess < 1 || this.playersGuess > 100){
-		throw "That is an invalid guess.";
+		return "That is an invalid guess.";
 	} else if (this.pastGuesses.indexOf(this.playersGuess) != -1){
 		return "You have already guessed that number."
 	} else if (this.playersGuess === this.winningNumber){
