@@ -36,9 +36,10 @@ Game.prototype.isLower = function() {
 };
 
 Game.prototype.playersGuessSubmission = function(guess) {
+	var result;
 	this.playersGuess = guess;
-	if(this.checkGuess() == false){
-		throw "That is an invalid guess.";
+	if(this.checkGuess() == "You have already guessed that number.") {
+		result = "You have already guessed that number.";
 	} else {
 		//must check before guess is added to pastGuesses to avoid 
 		//false positives on "You have already guessed that number"
@@ -50,13 +51,13 @@ Game.prototype.playersGuessSubmission = function(guess) {
 
 Game.prototype.checkGuess = function() {
 	if(typeof this.playersGuess != 'number' || this.playersGuess < 1 || this.playersGuess > 100){
-		return false;
+		throw "That is an invalid guess.";
+	} else if (this.pastGuesses.indexOf(this.playersGuess) != -1){
+		return "You have already guessed that number."
 	} else if (this.playersGuess === this.winningNumber){
 		return "You Win!"
 	} else if (this.pastGuesses.length >= 4){ //current guess is the fifth and hasn't yet been added to pastGuesses
 		return "You Lose."
-	} else if (this.pastGuesses.indexOf(this.playersGuess) != -1){
-		return "You have already guessed that number."
 	} else if (this.difference() < 10){
 		return "You\'re burning up!"
 	} else if (this.difference() < 25){
