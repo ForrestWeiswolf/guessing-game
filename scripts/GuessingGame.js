@@ -90,17 +90,17 @@ $(document).ready(function() {
 	$('#reset').click(function(event) {
 		game = new Game;
 		$('#guesses ul li').each(function(index){
-			$(this).text("_");
+			showAndBlink(this, '_');
 		});
-		$('#title').text('Play the Guessing Game!');
-		$('#subtitle').text("Guess a number between 1 and 100.");
+		showAndBlink('#title', 'Play the Guessing Game!');
+		showAndBlink('#subtitle', "Guess a number between 1 and 100.");
 		$('#submit_guess').prop('disabled', false);
 		$('#hint').prop('disabled', false);
 	})
 
 	$('#hint').click(function(event) {
 		var hintStr = game.provideHint().join(", ");
-		$('#subtitle').text(`Hint: It's one one of these numbers: ${hintStr}`);
+		showAndBlink('#subtitle', `Hint: It's one one of these numbers: ${hintStr}`);
 	})
 
 	function enterGuess() {
@@ -110,19 +110,25 @@ $(document).ready(function() {
 
 		if (checkResult === 'That is an invalid guess.' || 
 			checkResult === 'You have already guessed that number.'){
-			$('#subtitle').text(checkResult);
+			showAndBlink('#subtitle', checkResult);
 		} else if(checkResult === "You Win!" || checkResult === "You Lose."){
-			$('#title').text(checkResult);
-			$('#subtitle').text("Click 'Reset' (or reload page) to play again.");
+			showAndBlink('#title', checkResult);
+			showAndBlink('#subtitle', "Click 'Reset' (or reload page) to play again.");
 			$('#submit_guess').prop('disabled', true);
 			$('#hint').prop('disabled', true);
 		} else {
 			var direction = game.isLower() ? "Too low: " : "Too high: ";
-			$('#subtitle').text(direction + checkResult);
+			showAndBlink('#subtitle', direction + checkResult);
 		}
 
 		$('#guesses ul li').each(function(index){
-			$(this).text(game.pastGuesses[index]);
+			showAndBlink(this, game.pastGuesses[index]);
 		});
+	}
+
+	function showAndBlink(element, text){
+		$(element).text(text); 
+		$(element).css({color : 'darkred'});
+		setTimeout(function(){ $(element).css({color : 'black'}); }, 100)
 	}
 })
